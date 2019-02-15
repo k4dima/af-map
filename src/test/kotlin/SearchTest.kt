@@ -10,12 +10,13 @@ import java.nio.charset.Charset
 class SearchTest {
     @Test
     fun testSearch() {
-        val data: Map<*, *>? = ObjectMapper().readValue(
-            IOUtils.toString(javaClass.getResource("data.json"), Charset.defaultCharset()),
-            Map::class.java
-        )
         @Suppress("UNCHECKED_CAST")
-        val value = AppsFlyer.rollPushNotificationPayload(data as Map<String, Any>, "af")
-        Assert.assertEquals("ahah", value)
+        AppsFlyer.rollPushNotificationPayload(
+            ObjectMapper().readValue<Map<*, *>>(
+                IOUtils.toString(javaClass.getResource("data.json"), Charset.defaultCharset()),
+                Map::class.java
+            ) as Map<String, Any>,
+            "af"
+        ).apply { Assert.assertEquals("ahah", this) }
     }
 }
