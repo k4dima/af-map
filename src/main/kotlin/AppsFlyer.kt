@@ -3,10 +3,11 @@ class AppsFlyer {
         fun rollPushNotificationPayload(data: Map<String, Any>, key: String): Any? =
             data[key] ?: data.values
                 .filter { it is Map<*, *> }
-                .mapNotNull {
+                .map {
                     @Suppress("UNCHECKED_CAST")
-                    rollPushNotificationPayload(it as Map<String, Any>, key)
+                    it as Map<String, Any>
                 }
+                .mapNotNull { rollPushNotificationPayload(it, key) }
                 .first()
     }
 }

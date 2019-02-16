@@ -10,16 +10,16 @@ import java.nio.charset.Charset
 class SearchTest {
     @Suppress("UNCHECKED_CAST")
     @Test
-    fun test() = with(
+    fun test() = Assert.assertEquals(
+        "ahah",
         AppsFlyer.rollPushNotificationPayload(
-            ObjectMapper().readValue<Map<*, *>>(
+            ObjectMapper().readValue(
                 IOUtils.toString(
                     javaClass.getResource("data.json"),
                     Charset.defaultCharset()
-                ),
-                Map::class.java
+                ), Map::class.java
             ) as Map<String, Any>,
             "af"
         )
-    ) { Assert.assertEquals("ahah", this) }
+    )
 }
