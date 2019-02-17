@@ -2,6 +2,5 @@
 !.idea/dictionaries/
 !.idea/dictionaries/dmytrov.xml
 gradle*
-!gradle.properties
 .DS_Store
 out/

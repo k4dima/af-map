@@ -8,18 +8,9 @@ import java.nio.charset.Charset
 
 @RunWith(JUnit4::class)
 class SearchTest {
-    @Suppress("UNCHECKED_CAST")
     @Test
-    fun test() = Assert.assertEquals(
-        "ahah",
-        AppsFlyer.rollPushNotificationPayload(
-            ObjectMapper().readValue(
-                IOUtils.toString(
-                    javaClass.getResource("data.json"),
-                    Charset.defaultCharset()
-                ), Map::class.java
-            ) as Map<String, Any>,
-            "af"
-        )
-    )
+    fun test() = IOUtils.toString(javaClass.getResource("data.json"), Charset.defaultCharset())
+        .run { ObjectMapper().readValue(this, Map::class.java) }
+        .run { @Suppress("UNCHECKED_CAST") Apps.search(this as Map<String, Any>, "af") }
+        .run { Assert.assertEquals("ahah", this) }
 }
