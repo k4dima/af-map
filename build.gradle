@@ -7,7 +7,7 @@ repositories {
 }
 dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-    testImplementation 'com.fasterxml.jackson.core:jackson-databind:+'
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.9.9'
     testImplementation 'commons-io:commons-io:2.6'
     testImplementation 'junit:junit:4.12'
 }
